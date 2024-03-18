@@ -1,7 +1,6 @@
 
 
 def main():
-    print("hello world")
     #get user expense track
     user_get_expense()
     #save expense file
@@ -23,11 +22,16 @@ def user_get_expense():
         print("Select a category: ")
         for i, category_name in enumerate(expense_category):
             print(f"  {i + 1}.{category_name}")
-
         value_range = f"[1 - {len(expense_category)}]"
-        selected_index = input("Enter your choice {value_range}: ")
-        break
-
+        selected_index = input("Enter your choice {}: ".format(value_range))
+        try:
+            selected_index = int(selected_index)
+            if selected_index in range(1, len(expense_category) + 1):
+                break
+            else:
+                print("Invalid input please try again!")
+        except ValueError:
+            print("Invalid input please try again!")
 def save_file_expense():
     print("saving file...")
 
